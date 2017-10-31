@@ -23,13 +23,17 @@ $( document ).ready(function() {
 		
 	});
 	
+	
+		
 	$('#sendForm').on('click', function(e){
 		$('#edit-form').submit();
 	});
+	
 		
 	cargarDatosInput();
 	cargarPublicaciones();
 });
+
 
 function cargarDatosInput(){
 	

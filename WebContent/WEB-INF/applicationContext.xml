@@ -19,4 +19,5 @@
 	
    <bean id = "usuarioDAO" class = "persistencia.DAOUsuario"></bean>
     <bean id = "publicacionDAO" class = "persistencia.DAOPublicaciones"></bean>
+    <bean id = "mensajeprivadoDAO" class = "persistencia.DAOMensajesPrivados"></bean>
 </beans>
