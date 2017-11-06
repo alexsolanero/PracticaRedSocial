@@ -1,6 +1,5 @@
 package modelo;
 
-
 public class Like {
   private String emailUsuario;
   private String idPublicacion;

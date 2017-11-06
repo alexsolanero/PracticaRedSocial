@@ -9,6 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.tomcat.util.codec.binary.Base64;
  
 
+
 public class Utilidades {
  
     public static String Encriptar(String texto) {

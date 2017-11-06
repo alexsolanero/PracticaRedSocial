@@ -51,3 +51,4 @@ Given Un nombre, un email, una pwduno y una pwddos
 When email ya esta en la base de datos
 Then no se registra
 
+

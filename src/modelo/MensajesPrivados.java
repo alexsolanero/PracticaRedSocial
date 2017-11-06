@@ -1,6 +1,7 @@
 package modelo;
 
 
+
 public class MensajesPrivados {
 	private String idmensaje;
 	private String fecha;

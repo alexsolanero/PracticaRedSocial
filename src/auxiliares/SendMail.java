@@ -7,6 +7,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
+
 public class SendMail {
 	private static String userName = "atencion.cliente.dissw@gmail.com";
 	private static String password = "atencioncliente1234";
