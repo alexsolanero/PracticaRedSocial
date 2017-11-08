@@ -202,7 +202,7 @@ function cargarRespuestas(){
 }
 function cargarLikes(){
 	
-	for(i=0;i<arrayIdPublicaciones.length;i++){
+	for(var i=0;i<arrayIdPublicaciones.length;i++){
 		var html = "";
 		$.post( "likes.do",
 				  { idPublicacion: arrayIdPublicaciones[i],

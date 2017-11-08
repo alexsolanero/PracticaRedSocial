@@ -36,7 +36,7 @@ public class PublicacionServlet {
 	 String email = request.getParameter("email");
 	 String mensaje = request.getParameter("mensaje");
  
-	 // Montamos la fecha actual para saber cuando se hizo la publicación.
+	 // Montamos la fecha actual para saber cuando se hizo la publicacion.
 	 Calendar fecha = new GregorianCalendar();
 	 String fechaPublicacion = "";
      int year = fecha.get(Calendar.YEAR);
@@ -95,7 +95,7 @@ public class PublicacionServlet {
 	 String idPublicacion = request.getParameter("edit-id");
 	 String mensaje = request.getParameter("mensaje");
 	 
-	// Montamos la fecha actual para saber cuando se hizo la publicación.
+	// Montamos la fecha actual para saber cuando se hizo la publicacion.
 	 Calendar fecha = new GregorianCalendar();
 	 String fechaPublicacion = "";
      int year = fecha.get(Calendar.YEAR);

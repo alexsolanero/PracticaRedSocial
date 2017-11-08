@@ -7,6 +7,16 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>src</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>/Users/maria/eclipse-workspace/redSocialMuro/src/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>/Users/maria/eclipse-workspace/redSocialMuro/src/resources</directory>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -14,8 +24,17 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.8</version>
+            <configuration>
+                <printSummary>true</printSummary>
+            </configuration>
+        </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.0.0</version>
@@ -24,21 +43,14 @@
         </configuration>
       </plugin>
     </plugins>
+    
   </build>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-	<dependency>
-    	<groupId>org.seleniumhq.selenium</groupId>
-    	<artifactId>selenium-java</artifactId>
-    	<version>3.2.0</version>
-	</dependency>
 	<!-- https://mvnrepository.com/artifact/junit/junit -->
-	<dependency>
-    	<groupId>junit</groupId>
-    	<artifactId>junit</artifactId>
-    	<version>4.10</version>
-    	<scope>test</scope>
-	</dependency>
 	<dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-web</artifactId>
@@ -140,5 +152,11 @@
       <artifactId>javax.mail-api</artifactId>
       <version>1.6.0</version>
    </dependency>
+   <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-util</artifactId>
+    <version>9.0.1</version>
+</dependency>   
   </dependencies>
 </project>

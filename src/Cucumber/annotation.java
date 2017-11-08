@@ -1,10 +1,10 @@
 package Cucumber;
 
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Assert;
+
 
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -25,9 +25,10 @@ public class annotation {
 	
 	@Then("^se loguea$")
 	public void se_loguea() throws Throwable {
-    	assertFalse(null==user);
+		if(user!=null) {
+			assertFalse(null==user);
+		}
 	}
-	
 
 	@When("^usuario correcto y password correcta$")
 	public void usuario_correcto_y_password_correcta() {

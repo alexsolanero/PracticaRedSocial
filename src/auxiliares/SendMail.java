@@ -36,8 +36,8 @@ public class SendMail {
 			Message message = new MimeMessage(getSession());
 			message.setFrom(new InternetAddress(userName));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
-			message.setSubject("Recupera tu contraseña");
-			message.setText("La contraseña para acceder a tu cuenta es:"+pwd);
+			message.setSubject("Recupera tu contrasena");
+			message.setText("La contrasena para acceder a tu cuenta es:"+pwd);
 			Transport.send(message);
 
 

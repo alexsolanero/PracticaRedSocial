@@ -39,7 +39,7 @@ public class DAOPublicaciones {
 	
 	public static void update (Publicacion publicacion) throws Exception {
 		
-		// Montamos la fecha actual para saber cuando se hizo la publicación.
+		// Montamos la fecha actual para saber cuando se hizo la publicacion.
 		 Calendar fecha = new GregorianCalendar();
 		 String fechaPublicacion = "";
 	     int year = fecha.get(Calendar.YEAR);
