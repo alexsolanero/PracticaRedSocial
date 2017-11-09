@@ -29,7 +29,8 @@ public class annotation {
 	
 	@Then("^se loguea$")
 	public void se_loguea() throws Throwable {
-    	assertFalse(null==user);
+		if(user!=null)
+			assertFalse(null==user);
 	}
 	
 
