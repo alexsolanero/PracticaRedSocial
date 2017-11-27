@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.Like;
 import com.redsocial.modelo.Publicacion;
 import com.redsocial.modelo.Respuesta;
@@ -33,17 +34,7 @@ public class PublicacionController {
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			
 			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaPublicacion = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaPublicacion = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaPublicacion=Utilidades.obtenerFecha();
 			
 			
 			Publicacion publicacion = new Publicacion();
@@ -69,18 +60,7 @@ public class PublicacionController {
 			String idPublicacion = request.getParameter("respuesta-publicacion");
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			
-			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaPublicacion = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaPublicacion = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaPublicacion=Utilidades.obtenerFecha();
 		     
 		     Respuesta respuesta = new Respuesta(user.getemail(), fechaPublicacion, idPublicacion, mensaje, user.getNombre());
 		     

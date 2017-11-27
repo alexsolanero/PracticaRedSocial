@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.Like;
 import com.redsocial.modelo.MensajesPrivados;
 import com.redsocial.modelo.Publicacion;
@@ -142,18 +143,7 @@ public class WallController {
 			String emisor = ((Usuario) request.getSession().getAttribute("user")).getemail();
 			String mensaje = request.getParameter("mensaje");
 			
-			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaEnvio = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaEnvio = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaEnvio=Utilidades.obtenerFecha();
 			
 			MensajesPrivados message = new MensajesPrivados(fechaEnvio, destinatario, emisor, mensaje);
 			

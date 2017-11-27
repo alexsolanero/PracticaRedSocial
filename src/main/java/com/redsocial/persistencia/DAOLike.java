@@ -21,6 +21,11 @@ public class DAOLike {
 	private final static String idp = "idPublicacion";
 	private final static String likess = "Likes";
 	
+	/**
+	 * 
+	 * @param like (email de usuario y idPublicacion)
+	 * @method inserta un nuevo like
+	 */
 	 public static void insert(Like like) throws Exception {
 	
 	    
@@ -51,17 +56,21 @@ public class DAOLike {
     
   }*/
 
-  
-  public static void delete(Like like) {
-    Document doc=new Document();
-    doc.append(idp, like.getIdPublicacion());
-    doc.append(eu, like.getEmailUsuario());
-    
-    MongoBroker broker= MongoBroker.get();
-    MongoCollection<Document>likes=broker.getCollection(likess);
-    likes.findOneAndDelete(doc);
-    
-  }
+	/**
+	 * 
+	 * @param like (email de usuario y idPublicacion)
+	 * @method elimina un like
+	 */
+	 public static void delete(Like like) {
+		 Document doc=new Document();
+		 doc.append(idp, like.getIdPublicacion());
+		 doc.append(eu, like.getEmailUsuario());
+
+		 MongoBroker broker= MongoBroker.get();
+		 MongoCollection<Document>likes=broker.getCollection(likess);
+		 likes.findOneAndDelete(doc);
+
+	 }
   
  /* public static void deleteAll(String idPublicacion) {
 	    Document doc=new Document();
@@ -72,43 +81,53 @@ public class DAOLike {
 	    likes.deleteMany(doc);
 	    
 	  }*/
-  
-  public static ArrayList<Like> select(String idPublicacion) throws Exception {
-		
-		ArrayList<Like> result = new ArrayList<Like>();
-		MongoBroker broker = MongoBroker.get();
-		MongoCollection<Document> publicaciones=broker.getCollection(likess);
-		Document criterio=new Document();
-		criterio.append(idp, idPublicacion);
-		
-		FindIterable<Document> resultado=publicaciones.find(criterio);
-		MongoCursor<Document> cursor = resultado.iterator();
-		
-		while (cursor.hasNext()) {
-			Document doc = cursor.next();
-			Like like = new Like(doc.getString(eu), doc.getString(idp));
-			result.add(like);
-		}
-				
-		return result;
-	}
-  	
-  public static Like checkLike(String idPublicacion,String emailUsuario) throws Exception {
-		Like result = null;
-		MongoBroker broker = MongoBroker.get();
-		MongoCollection<Document> likes=broker.getCollection(likess);
-		Document criterio=new Document();
-		criterio.append(idp, idPublicacion);
-		criterio.append(eu, emailUsuario);
-		
-		FindIterable<Document> resultado=likes.find(criterio);
-		Document doc=resultado.first();
-		
-		if (doc!=null) {
-			result = new Like(doc.getString("emailUsuario"), doc.getString("idPublicacion"));
-		}
-		
-		return result;
-	}
+	 /**
+	  * 
+	  * @param idPublicacion
+	  * @return una lista con los likes de una publicacion
+	  */
+	 public static ArrayList<Like> select(String idPublicacion) throws Exception {
+
+		 ArrayList<Like> result = new ArrayList<Like>();
+		 MongoBroker broker = MongoBroker.get();
+		 MongoCollection<Document> publicaciones=broker.getCollection(likess);
+		 Document criterio=new Document();
+		 criterio.append(idp, idPublicacion);
+
+		 FindIterable<Document> resultado=publicaciones.find(criterio);
+		 MongoCursor<Document> cursor = resultado.iterator();
+
+		 while (cursor.hasNext()) {
+			 Document doc = cursor.next();
+			 Like like = new Like(doc.getString(eu), doc.getString(idp));
+			 result.add(like);
+		 }
+
+		 return result;
+	 }
+	 
+	 /**
+	  * 
+	  * @param idPublicacion
+	  * @param emailUsuario
+	  * @return null si no existe el like, 'Like' si existe
+	  */
+	 public static Like checkLike(String idPublicacion,String emailUsuario) throws Exception {
+		 Like result = null;
+		 MongoBroker broker = MongoBroker.get();
+		 MongoCollection<Document> likes=broker.getCollection(likess);
+		 Document criterio=new Document();
+		 criterio.append(idp, idPublicacion);
+		 criterio.append(eu, emailUsuario);
+
+		 FindIterable<Document> resultado=likes.find(criterio);
+		 Document doc=resultado.first();
+
+		 if (doc!=null) {
+			 result = new Like(doc.getString("emailUsuario"), doc.getString("idPublicacion"));
+		 }
+
+		 return result;
+	 }
 
 }

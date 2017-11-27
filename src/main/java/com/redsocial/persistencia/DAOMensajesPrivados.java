@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.MensajesPrivados;
 import com.redsocial.modelo.Respuesta;
 /**
@@ -27,32 +27,21 @@ public class DAOMensajesPrivados {
 		doc.append("emaildestinatario", msg.getDestinatario());
 		doc.append("emailemisor", msg.getEmisor());
 		doc.append("mensaje", msg.getMensaje());
-			
+
 		MongoBroker broker= MongoBroker.get();
 		MongoCollection<Document>mensajes=broker.getCollection("MensajesPrivados");
 		mensajes.insertOne(doc);
-		
-		 ObjectId id = (ObjectId)doc.get("_id");
-		
-		 return id;
+
+		ObjectId id = (ObjectId)doc.get("_id");
+
+		return id;
 	}
 	
 
 	
 	public static void update (MensajesPrivados msg) throws Exception {
 		
-		// Montamos la fecha actual para saber cuando se hizo el mensaje.
-		 Calendar fecha = new GregorianCalendar();
-		 String fechaMensaje = "";
-	     int year = fecha.get(Calendar.YEAR);
-	     // Se le suma uno, porque calendar.month devuelve de 0-11
-	     int month = fecha.get(Calendar.MONTH)+1;
-	     int day = fecha.get(Calendar.DAY_OF_MONTH);
-	     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-	     int minute = fecha.get(Calendar.MINUTE);
-	     String monthS = (month<10)?"0"+month:""+month;
-	     String dayS = (day<10)?"0"+day:""+day;
-	     fechaMensaje = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+		String fechaMensaje = Utilidades.obtenerFecha();
 		
 		Document filter = new Document("_id", new ObjectId(msg.getIdmensaje()));
 		Document newValue = new Document();
