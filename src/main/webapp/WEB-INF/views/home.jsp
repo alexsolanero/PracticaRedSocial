@@ -11,7 +11,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 	<script src="resources/js/index.js"></script>
 	<script type="text/javascript" src="resources/js/password.js"></script>
-
+	<%-- By JA captcha registro--%>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<title>redSocial</title>
 </head>
 <body>
@@ -41,12 +42,12 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="login" method="post" role="form" style="display: block;">
+								<form id="login-form" action="login" method="POST"  autocomplete="off" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" tabindex="1" class="form-control" placeholder="Correo Electronico" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" autocomplete="off" placeholder="Contraseña">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -66,8 +67,9 @@
 									</div>
 								</form>
 							</div>
+							<%-- By JA captcha registro--%>
 							<div class="col-lg-12 register-form">
-								<form id="register-form" action="registrar" method="post" class="validate" role="register" style="display: none;">
+								<form id="register-form" action="registrar" method="post" class="validate"  autocomplete="off" role="register" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
 									</div>
@@ -78,11 +80,11 @@
 										</div>
 									</div>
 									<div class="form-group" id="#pwd-container">
-										<input type="password" id="password-register" name="password-register" tabindex="2" class="form-control" placeholder="Contraseña" required>
+										<input type="password" id="password-register" name="password-register" autocomplete="off" tabindex="2" class="form-control" placeholder="Contraseña" required>
 										<div class="pwstrength_viewport_progress"></div>
 									</div>
 									<div class="form-group">
-										<input type="password" id="confirm-password" name="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar contraseña" required>
+										<input type="password" id="confirm-password" name="confirm-password" autocomplete="off" tabindex="2" class="form-control" placeholder="Confirmar contraseña" required>
 									</div>
 									<div id="status">
 									
@@ -94,6 +96,8 @@
 											</div>
 										</div>
 									</div>
+									<%-- By JA captcha registro--%>
+									<div class="g-recaptcha" data-sitekey="6LfhyjkUAAAAAHb3b-EcKiaqtOMXIh40J1xJoguu"></div>
 								</form>
 							</div>
 						</div>

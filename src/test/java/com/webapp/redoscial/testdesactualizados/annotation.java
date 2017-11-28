@@ -1,9 +1,10 @@
-package com.webapp.redsocial;
+package com.webapp.redoscial.testdesactualizados;
 
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.MensajesPrivados;
 import com.redsocial.modelo.Publicacion;
 import com.redsocial.modelo.Usuario;
@@ -24,10 +25,8 @@ public class annotation {
 	
 	private DAOUsuario usuario;
 	private Usuario user;
-	private DAOPublicacion publicacion;
 	private Publicacion publi;
 	private MensajesPrivados msgprivate;
-	private DAOMensajesPrivados daomsgprivate;
 	
 	@Given("^Un usuario y password$")
 	public void Un_usuario_y_password() {
@@ -42,7 +41,7 @@ public class annotation {
 		user.setemail(email);
 		user.setPwd(pwd);
 		try {
-			user=usuario.select(user);
+			user=DAOUsuario.select(user);
 		} catch (Exception e) {
 			assertFalse(true);
 		}
@@ -86,25 +85,29 @@ public class annotation {
 
 	
 	@When("^pwduno es igual a pwddos$")
-	public void pwduno_es_igual_a_pwddos() {
+	public void pwduno_es_igual_a_pwddos() throws Exception {
 		String pwd1= "1234";
 		String pwd2= "1234";
+		String email="emailinsertado@hotmail.com";
 		Usuario user1 = new Usuario("Josefa");
 		user1.setPwd(pwd1);
-		try {
-			if(pwd1.equals(pwd2)) {
-				user=DAOUsuario.insert(user1);
-			}
-		}catch(Exception e) {
-			
+		user1.setemail(email);
+		user1=DAOUsuario.select(user1);
+		if(user1!=null)
+			DAOUsuario.delete(user1.getid());
+		
+		user1 = new Usuario("Josefa");
+		user1.setPwd(pwd1);
+		user1.setemail(email);
+		
+		if(pwd1.equals(pwd2)) {
+			user=DAOUsuario.insert(user1);
 		}
-	 
 	}
 
 	@Then("^se registra$")
 	public void se_registra() {
-		if(user!=null)
-			assertTrue(null!=user);
+		assertTrue(null!=user);
 	}
 	
 	@When("^pwduno es distinto a pwddos$")
@@ -127,8 +130,7 @@ public class annotation {
 	
 	@Then("^no se registra$")
 	public void no_se_registra() {
-	   if(user==null)
-		   assertTrue(user==null);
+		assertTrue(user==null);
 	}
 	
 	@Given("^Un idUsuario$")
@@ -146,17 +148,17 @@ public class annotation {
 	    user1.setemail(email);
 	    user1.setPwd(pwd);
 	    user=DAOUsuario.select(user1);
+	    if(user==null)
+	    	user=DAOUsuario.insert(user1);
 	}
 
 	@Then("^se borra$")
 	public void se_borra() {
-	    if(user!=null)
-	    	DAOUsuario.delete(user.getid());
+	    DAOUsuario.delete(user.getid());
 	}
 
 	@Given("^Usuario en wall$")
 	public void Usuario_en_wall() {
-	    publicacion=new DAOPublicacion();
 	    publi=new Publicacion();
 	}
 
@@ -172,27 +174,28 @@ public class annotation {
 
 	@Then("^publicas$")
 	public void publicas() {
-	    if(publi!=null)
-	    	assertTrue(publi!=null);
+	    assertTrue(publi!=null);
 	}
 	
 	@Given("^Un idpublicacion$")
 	public void Un_idpublicacion() {
-		publicacion=new DAOPublicacion();
 	    publi=new Publicacion();
 	}
 
 	@When("^datos publicacion correctos$")
 	public void datos_publicacion_correctos() throws Exception {
 		Publicacion publi2=new Publicacion();
-	    publi2.setIdPublicacion("5a11bd290799532628e929fd");
-		publi=DAOPublicacion.select(publi2.getIdPublicacion());
+		publi2.setNombre("prueba30");
+		publi2.setEmail("prueba30@hotmail.com");
+		publi2.setFecha("03/11/2017 0:22");
+		publi2.setMensaje("ESTA ES PARA BORRAR");
+		publi=DAOPublicacion.insert(publi2);
 	}
 
 	@Then("^se borra publicacion$")
-	public void se_borra_publicacion() {
-	    if(publi!=null)
-	    	DAOPublicacion.delete("5a11bd290799532628e929fd");
+	public void se_borra_publicacion() throws Exception {
+		DAOPublicacion.delete(publi.getIdPublicacion());
+		assertTrue(null==DAOPublicacion.select(publi.getIdPublicacion()));
 	}
 	
 	@Given("^Un Usuario$")
@@ -204,38 +207,42 @@ public class annotation {
 	@When("^datos usuario correctos$")
 	public void datos_usuario_correctos() throws Exception {
 		String nombre="prueba30";
+		String email="prueba30@hotmail.com";
 	    Usuario user1 = new Usuario(nombre);
+	    user1.setemail(email);
 	    user=DAOUsuario.select(user1);
 	}
 
 	@Then("^se modifica usuario$")
 	public void se_modifica_usuario() throws Exception {
 		if(user!=null)
-			user.setPwd("PRUEBAprueba");
+			user.setPwd(Utilidades.Encriptar("PRUEBAprueba"));
 	    	DAOUsuario.update(user);
 	}
 	
 	@Given("^Una publicacion$")
 	public void Una_publicacion() {
-		publicacion=new DAOPublicacion();
 	    publi=new Publicacion();
 	}
 
 	@When("^publicacion correcta$")
 	public void publicacion_correcta() throws Exception {
 		Publicacion publi2=new Publicacion();
-	    publi2.setIdPublicacion("5a03545d56320321f49b7810");
-		publi=DAOPublicacion.select(publi2.getIdPublicacion());
+		publi2.setNombre("prueba30");
+		publi2.setEmail("prueba30@hotmail.com");
+		publi2.setFecha(Utilidades.obtenerFecha());
+		publi2.setMensaje("ESTA ES PARA EDITAR");
+		publi=DAOPublicacion.insert(publi2);
 	}
 
 	@Then("^se modifica publicacion$")
 	public void se_modifica_publicacion() throws Exception {
 		if(publi!=null)
-	    	DAOPublicacion.delete("5a03545d56320321f49b7810");
+	    	DAOPublicacion.delete(publi.getIdPublicacion());
 			Publicacion publi2=new Publicacion();
-			publi2.setNombre("alba");
-			publi2.setEmail("alba@hotmail.com");
-			publi2.setFecha("20/11/2017 12:24");
+			publi2.setNombre("prueba30");
+			publi2.setEmail("prueba30@hotmail.com");
+			publi2.setFecha(Utilidades.obtenerFecha());
 			publi2.setMensaje("mod testing");
 			publi=DAOPublicacion.insert(publi2);
 	}
@@ -243,7 +250,6 @@ public class annotation {
 	@Given("^Un mensaje privado$")
 	public void Un_mensaje_privado() {
 	   msgprivate=new MensajesPrivados();
-	   daomsgprivate=new DAOMensajesPrivados();
 	}
 
 	@When("^mensaje privado correcto$")
@@ -251,15 +257,14 @@ public class annotation {
 		
 	    msgprivate.setEmisor("prueba30@hotmail.com");
 	    msgprivate.setDestinatario("bu@hotmail.com");
-	    msgprivate.setFecha("20/11/2017 12:15");
+	    msgprivate.setFecha(Utilidades.obtenerFecha());
 	    msgprivate.setMensaje("hola esto es testing");
 	    DAOMensajesPrivados.insert(msgprivate);
 	}
 
 	@Then("^se manda mensaje privado$")
 	public void se_manda_mensaje_privado() {
-	    if(msgprivate!=null)
-	    	assertTrue(msgprivate!=null);
+	    assertTrue(msgprivate!=null);
 	}
 	
 }

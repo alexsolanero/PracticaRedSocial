@@ -2,17 +2,19 @@ package com.redsocial.persistencia;
 
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
+import javax.xml.bind.DatatypeConverter;
+
 
 import org.bson.Document;
+import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.Publicacion;;
 /**
  * 
@@ -45,8 +47,8 @@ public class DAOPublicacion {
 		 Publicacion result = null;
 		 if (id!=null) {
 			 result = publicacion;
+			 result.setIdPublicacion(id.toString());
 		 }
-		
 		 return result;
 	}
 	
@@ -54,23 +56,13 @@ public class DAOPublicacion {
 	
 	public static void update (Publicacion publicacion) throws Exception {
 		
-		// Montamos la fecha actual para saber cuando se hizo la publicacion.
-		 Calendar fecha = new GregorianCalendar();
-		 String fechaPublicacion = "";
-	     int year = fecha.get(Calendar.YEAR);
-	     // Se le suma uno, porque calendar.month devuelve de 0-11
-	     int month = fecha.get(Calendar.MONTH)+1;
-	     int day = fecha.get(Calendar.DAY_OF_MONTH);
-	     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-	     int minute = fecha.get(Calendar.MINUTE);
-	     String monthS = (month<10)?"0"+month:""+month;
-	     String dayS = (day<10)?"0"+day:""+day;
-	     fechaPublicacion = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+		String fechaPublicacion = Utilidades.obtenerFecha();
 		
 		Document filter = new Document("_id", new ObjectId(publicacion.getIdPublicacion()));
 		Document newValue = new Document();
 		newValue.append("mensaje", publicacion.getMensaje());
 		newValue.append("fecha", fechaPublicacion);
+		newValue.append("imagen", publicacion.getImagen());
 		Document updateOperationDocument = new Document("$set", newValue);
 		
 		MongoBroker broker= MongoBroker.get();
@@ -89,9 +81,14 @@ public class DAOPublicacion {
 		FindIterable<Document> resultado=publicaciones.find(criterio);
 		Document publicacion=resultado.first();
 		
+		
+		Binary imagen = publicacion.get(img, org.bson.types.Binary.class);
+		byte[]imagenFinal=imagen.getData();
+		String imagenCodificada= DatatypeConverter.printBase64Binary(imagenFinal);
+		
 		if (publicacion!=null) {
 			result = new Publicacion(publicacion.getString("idPublicacion"), publicacion.getString("email"), 
-			publicacion.getString("name"), publicacion.getString("fecha"), publicacion.getString("imagen"), publicacion.getString("mensaje"));
+			publicacion.getString("name"), publicacion.getString("fecha"), imagenCodificada, publicacion.getString("mensaje"));
 		}
 		
 		return result;
@@ -108,7 +105,12 @@ public class DAOPublicacion {
 		while (cursor.hasNext()) {
 			Document doc = cursor.next();
 			ObjectId id = (ObjectId)doc.get( idd );
-			Publicacion publi = new Publicacion(id.toString(), doc.getString(emaill), doc.getString(name), doc.getString(fechaa), doc.getString(img), doc.getString(sms));
+						
+			Binary imagen = doc.get(img, org.bson.types.Binary.class);
+			byte[]imagenFinal=imagen.getData();
+			String imagenCodificada= DatatypeConverter.printBase64Binary(imagenFinal);
+			
+			Publicacion publi = new Publicacion(id.toString(), doc.getString(emaill), doc.getString(name), doc.getString(fechaa), imagenCodificada, doc.getString(sms));
 			result.add(publi);
 		}
 

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.Like;
 import com.redsocial.modelo.Publicacion;
 import com.redsocial.modelo.Respuesta;
@@ -33,17 +37,12 @@ public class PublicacionController {
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			
 			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaPublicacion = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaPublicacion = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaPublicacion=Utilidades.obtenerFecha();
+			
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			CommonsMultipartFile multipartFile = (CommonsMultipartFile) multipartRequest.getFile("fichero");
+			byte[] imagenBytes = multipartFile.getBytes();
+			
 			
 			
 			Publicacion publicacion = new Publicacion();
@@ -51,6 +50,7 @@ public class PublicacionController {
 			publicacion.setNombre(user.getNombre());
 			publicacion.setMensaje(mensaje);
 			publicacion.setFecha(fechaPublicacion);
+			publicacion.setImagen(imagenBytes);
 			
 			Publicacion newPublicacion = DAOPublicacion.insert(publicacion);
 			
@@ -69,18 +69,7 @@ public class PublicacionController {
 			String idPublicacion = request.getParameter("respuesta-publicacion");
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			
-			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaPublicacion = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaPublicacion = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaPublicacion=Utilidades.obtenerFecha();
 		     
 		     Respuesta respuesta = new Respuesta(user.getemail(), fechaPublicacion, idPublicacion, mensaje, user.getNombre());
 		     
@@ -141,7 +130,11 @@ public class PublicacionController {
 			String fecha = request.getParameter("update-fecha");
 			String mensaje = request.getParameter("update-mensaje");
 			
-			Publicacion publicacion = new Publicacion(idPublicacion, email, nombre, fecha, "", mensaje);
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			CommonsMultipartFile multipartFile = (CommonsMultipartFile) multipartRequest.getFile("fichero");
+			byte[] imagenBytes = multipartFile.getBytes();
+			
+			Publicacion publicacion = new Publicacion(idPublicacion, email, nombre, fecha, imagenBytes, mensaje);
 			DAOPublicacion.update(publicacion);
 			
 			return "redirect:wall";

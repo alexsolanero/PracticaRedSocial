@@ -11,20 +11,31 @@ public class Publicacion {
 	private String email;
 	private String nombre;
 	private String fecha;
-	private String imagen;
+	private byte[] imagen;
+	private String imagenCodificada;
 	private String mensaje;
 	
 	public Publicacion() {
 		
 	}
 	
-	public Publicacion(String idPublicacion, String email, String nombre, String fecha, String imagen, String mensaje) {
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, byte[] imagen, String mensaje) {
 		
 		this.idPublicacion= idPublicacion;
 		this.email=email;
 		this.nombre=nombre;
 		this.fecha=fecha;
 		this.imagen=imagen;
+		this.mensaje=mensaje;	
+	}
+	
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, String imagenCodificada, String mensaje) {
+		
+		this.idPublicacion= idPublicacion;
+		this.email=email;
+		this.nombre=nombre;
+		this.fecha=fecha;
+		this.imagenCodificada=imagenCodificada;
 		this.mensaje=mensaje;	
 	}
 
@@ -60,12 +71,20 @@ public class Publicacion {
 		this.fecha = fecha;
 	}
 
-	public String getImagen() {
+	public byte[] getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
+	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
+	}
+	
+	public String getImagenCodificada() {
+		return imagenCodificada;
+	}
+
+	public void setImagenCodificada(String imagen) {
+		this.imagenCodificada = imagen;
 	}
 
 	public String getMensaje() {
