@@ -50,13 +50,6 @@ try {
         "0123456789", "abcdefghijklmnopqrstuvwxyz", "!@#$%^&*()_+"
     ];
 
-    validation.wordNotEmail = function (options, word, score) {
-        if (word.match(/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i)) {
-            return score;
-        }
-        return 0;
-    };
-
     validation.wordLength = function (options, word, score) {
         var wordlen = word.length,
             lenScore = Math.pow(wordlen, options.rules.raisePower);

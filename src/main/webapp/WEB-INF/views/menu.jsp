@@ -10,7 +10,13 @@
                <i class="fa fa-home fa-lg" aria-hidden="true"></i> Publicaciones
                   </a>
                 </li>
-                
+                <li>
+                  <a href="vistaAmigos">
+               		<i class="fa fa-users fa-lg" aria-hidden="true"></i> Amigos
+                  <span class="label label-danger notifications">
+                     ${totalNotificaciones}</span>
+                   </a>
+                </li>
                 <li>
                   <a href="messages">
               		<i class="fa fa-comments fa-lg" aria-hidden="true"></i> Mensajes <span class="label label-danger notifications">

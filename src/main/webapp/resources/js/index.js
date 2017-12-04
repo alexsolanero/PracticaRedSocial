@@ -51,7 +51,7 @@ $( document ).ready(function() {
 	    	$("#password-register").css('border-color', 'green');
 	    	$("#confirm-password").css('border-color', 'green');
 	    	$("#status").text("Contraseña correcta");
-	    	$('#register-submit').removeAttr('disabled');
+	    	 /* $('#register-submit').removeAttr('disabled')*/
 	    }
 	    else {
 	    	$("#status").css("color","red");

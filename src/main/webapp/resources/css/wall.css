@@ -24,3 +24,11 @@
 .btn-danger.btn-outline {
     color: #d9534f !important;
 }
+
+.btn-primary.btn-outline2 {
+    color: #428bca !important;
+}
+
+img{
+	width: 100%;
+}

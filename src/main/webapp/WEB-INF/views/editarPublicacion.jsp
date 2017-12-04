@@ -4,7 +4,7 @@
 	<div class="panel panel-primary">
 			 <div class="panel-heading"><h4>Editar publicación</h4></div>
   			<div class="panel-body">
-  				<form action="updatepublicacion" method="post">
+  				<form action="updatepublicacion" method="post"  enctype="multipart/form-data">
        	 <div class="form-group">
 		    <label for="edit-nombre">Nombre</label>
 		    <input type="text" class="form-control" readonly name="update-name" readonly value="${publi.nombre}">
@@ -22,6 +22,9 @@
 		   <textarea name="update-mensaje" style="width:400px;height:150px;" rows="4" cols="50">${publi.mensaje}</textarea>
 		   <input type="hidden" name="idPublicacion" value="${id}">
 		  </div>
+		  
+		 <img src="data:image/gif;base64,${publi.imagenCodificada}" name="imagen">
+		  
 		  <div class="modal-footer">
       		<button type="submit" class="btn btn-success">Guardar</button>
         	<a href="wall" class="btn btn-default" >Volver</a>

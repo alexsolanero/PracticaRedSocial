@@ -3,11 +3,13 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div class="col-md-12">
 	<div class="col-xs-12 col-sm-offset-3 col-sm-5" style="margin-bottom:10px;">
-	<form action="publicar" method="post">
+	<form action="publicar" method="post" enctype="multipart/form-data">
 		<label>¿Qué estás pensando?</label>
 		<div class="form-group">
 			<textarea rows="8" cols="60" name="mensaje"></textarea>
+			<input id="input-b5" name="fichero" type="file">
 		</div>
+		<button type="submit" class="btn btn-primary btn-outline" formaction="publicarAmigos">Solo amigos</button>	
 		<button type="submit" class="btn btn-primary btn-outline">Publicar</button>	
 	</form>
     </div>
@@ -26,9 +28,11 @@
                 <div class="panel-heading">
                     <h3>${publicacion.nombre}</h3>
                     <h5><span>Publicado el </span> - <span>${publicacion.fecha}</span> </h5>
+                    
                 </div>
                 <div class="panel-body">
                     <p>${publicacion.mensaje}</p>
+                    <img src="data:image/gif;base64,${publicacion.imagenCodificada}">
                     <div class="row">
                     	<div class="col-md-12">
                     	<c:forEach items="${respuestas[publicacion.idPublicacion]}" var="respuesta">

@@ -11,14 +11,15 @@ public class Publicacion {
 	private String email;
 	private String nombre;
 	private String fecha;
-	private String imagen;
+	private byte[] imagen;
+	private String imagenCodificada;
 	private String mensaje;
-	
+	private String privacidad; //Publica, Amigos
 	public Publicacion() {
 		
 	}
 	
-	public Publicacion(String idPublicacion, String email, String nombre, String fecha, String imagen, String mensaje) {
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, byte[] imagen, String mensaje) {
 		
 		this.idPublicacion= idPublicacion;
 		this.email=email;
@@ -26,8 +27,41 @@ public class Publicacion {
 		this.fecha=fecha;
 		this.imagen=imagen;
 		this.mensaje=mensaje;	
+		this.privacidad="Publica";
 	}
+	
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, String imagenCodificada, String mensaje) {
+		
+		this.idPublicacion= idPublicacion;
+		this.email=email;
+		this.nombre=nombre;
+		this.fecha=fecha;
+		this.imagenCodificada=imagenCodificada;
+		this.mensaje=mensaje;
+		this.privacidad="Publica";
 
+	}
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, String imagenCodificada, String mensaje, String privacidad) {
+		
+		this.idPublicacion= idPublicacion;
+		this.email=email;
+		this.nombre=nombre;
+		this.fecha=fecha;
+		this.imagenCodificada=imagenCodificada;
+		this.mensaje=mensaje;
+		this.privacidad=privacidad;
+
+	}
+	public Publicacion(String idPublicacion, String email, String nombre, String fecha, byte[] imagen, String mensaje, String privacidad) {
+		
+		this.idPublicacion= idPublicacion;
+		this.email=email;
+		this.nombre=nombre;
+		this.fecha=fecha;
+		this.imagen=imagen;
+		this.mensaje=mensaje;	
+		this.privacidad=privacidad;
+	}
 	public String getIdPublicacion() {
 		return idPublicacion;
 	}
@@ -60,12 +94,20 @@ public class Publicacion {
 		this.fecha = fecha;
 	}
 
-	public String getImagen() {
+	public byte[] getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
+	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
+	}
+	
+	public String getImagenCodificada() {
+		return imagenCodificada;
+	}
+
+	public void setImagenCodificada(String imagen) {
+		this.imagenCodificada = imagen;
 	}
 
 	public String getMensaje() {
@@ -75,11 +117,14 @@ public class Publicacion {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	
-	@Override
-	public String toString() {
-		return "Publicaciones [idPublicacion=" + idPublicacion + ", email=" + email + ", nombre=" + nombre + ", fecha="
-				+ fecha + ", imagen=" + imagen + ", mensaje=" + mensaje + "]";
+
+
+	public String getPrivacidad() {
+		return privacidad;
+	}
+
+	public void setPrivacidad(String privacidad) {
+		this.privacidad = privacidad;
 	}
 	
 

@@ -1,565 +1,1449 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri('com\webapp\redsocial\Cucumber.feature');
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri('com\webapp\redsocial\BorrarAmigo.feature');
 formatter.feature({
-  "line": 2,
-  "name": "Uso de cucumber en el que se va a probar el funcionamiento",
-  "description": "de una red social.",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento",
-  "keyword": "Feature",
-  "tags": [
-    {
-      "line": 1,
-      "name": "@featureTest"
-    }
-  ]
+  "line": 1,
+  "name": "Eliminar amistades",
+  "description": "",
+  "id": "eliminar-amistades",
+  "keyword": "Feature"
 });
 formatter.scenario({
-  "line": 6,
-  "name": "Login correcto de un usuario",
+  "line": 12,
+  "name": "Eliminar amistad valido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;login-correcto-de-un-usuario",
+  "id": "eliminar-amistades;eliminar-amistad-valido;;2",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 5,
+      "line": 4,
       "name": "@Scenario1"
     }
   ]
 });
 formatter.step({
-  "line": 7,
-  "name": "Un usuario y password",
+  "line": 6,
+  "name": "Usuario conectado para eliminar un amigo",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 8,
-  "name": "usuario correcto y password correcta",
+  "line": 7,
+  "name": "\"emisor@hotmail.com\" borra a  \"receptor@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 9,
-  "name": "se loguea",
+  "line": 8,
+  "name": "Borrar de amigos",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_usuario_y_password()"
+  "location": "BorrarAmigoTest.Usuario_conectado_para_eliminar_un_amigo()"
 });
 formatter.result({
-  "duration": 150418663,
+  "duration": 126983500,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.usuario_correcto_y_password_correcta()"
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 31
+    }
+  ],
+  "location": "BorrarAmigoTest.borra_a(String,String)"
 });
 formatter.result({
-  "duration": 4181029346,
+  "duration": 2472199400,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.se_loguea()"
+  "location": "BorrarAmigoTest.Borrar_de_amigos()"
 });
 formatter.result({
-  "duration": 26573571,
+  "duration": 2058394700,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 11,
-  "name": "Login incorrecto de usuario",
+  "line": 13,
+  "name": "Eliminar amistad valido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;login-incorrecto-de-usuario",
+  "id": "eliminar-amistades;eliminar-amistad-valido;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 10,
+      "line": 4,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 6,
+  "name": "Usuario conectado para eliminar un amigo",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "\"emisor2@hotmail.com\" borra a  \"receptor2@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Borrar de amigos",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "BorrarAmigoTest.Usuario_conectado_para_eliminar_un_amigo()"
+});
+formatter.result({
+  "duration": 16800,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 32
+    }
+  ],
+  "location": "BorrarAmigoTest.borra_a(String,String)"
+});
+formatter.result({
+  "duration": 2403134200,
+  "status": "passed"
+});
+formatter.match({
+  "location": "BorrarAmigoTest.Borrar_de_amigos()"
+});
+formatter.result({
+  "duration": 2391560300,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 23,
+  "name": "Eliminar amistad invalido",
+  "description": "",
+  "id": "eliminar-amistades;eliminar-amistad-invalido;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 15,
       "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
-  "line": 12,
-  "name": "Un usuario y password",
+  "line": 17,
+  "name": "Usuario conectado para eliminar un amigo",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 13,
-  "name": "Usuario incorrecto y una password incorrecta",
+  "line": 18,
+  "name": "\"emisor@hotmail.com\" intenta borrar a \"receptor@hotmail.com\" pero no son amigos",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 14,
-  "name": "no se loguea",
+  "line": 19,
+  "name": "Mensaje de error al borrado",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_usuario_y_password()"
+  "location": "BorrarAmigoTest.Usuario_conectado_para_eliminar_un_amigo()"
 });
 formatter.result({
-  "duration": 37730,
+  "duration": 15800,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.Usuario_incorrecto_y_una_password_incorrecta()"
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 39
+    }
+  ],
+  "location": "BorrarAmigoTest.intenta_borrar_a_pero_no_son_amigos(String,String)"
 });
 formatter.result({
-  "duration": 147772977,
+  "duration": 654656600,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.no_se_loguea()"
+  "location": "BorrarAmigoTest.Mensaje_de_error_al_borrado()"
 });
 formatter.result({
-  "duration": 55361,
+  "duration": 1395865800,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 16,
-  "name": "Registro correcto de un usuario",
+  "line": 24,
+  "name": "Eliminar amistad invalido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;registro-correcto-de-un-usuario",
+  "id": "eliminar-amistades;eliminar-amistad-invalido;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
       "line": 15,
-      "name": "@Scenario3"
+      "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
   "line": 17,
-  "name": "Un nombre, un email, una pwduno y una pwddos",
+  "name": "Usuario conectado para eliminar un amigo",
   "keyword": "Given "
 });
 formatter.step({
   "line": 18,
-  "name": "pwduno es igual a pwddos",
+  "name": "\"emisor2@hotmail.com\" intenta borrar a \"receptor2@hotmail.com\" pero no son amigos",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
   "line": 19,
-  "name": "se registra",
+  "name": "Mensaje de error al borrado",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_nombre_un_email_una_pwduno_y_una_pwddos()"
+  "location": "BorrarAmigoTest.Usuario_conectado_para_eliminar_un_amigo()"
 });
 formatter.result({
-  "duration": 46545,
+  "duration": 24900,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.pwduno_es_igual_a_pwddos()"
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 40
+    }
+  ],
+  "location": "BorrarAmigoTest.intenta_borrar_a_pero_no_son_amigos(String,String)"
 });
 formatter.result({
-  "duration": 235788300,
+  "duration": 533053200,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.se_registra()"
+  "location": "BorrarAmigoTest.Mensaje_de_error_al_borrado()"
 });
 formatter.result({
-  "duration": 57124,
+  "duration": 1460570200,
+  "status": "passed"
+});
+formatter.uri('com\webapp\redsocial\Login.feature');
+formatter.feature({
+  "line": 1,
+  "name": "Test del login en el sistema",
+  "description": "",
+  "id": "test-del-login-en-el-sistema",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "line": 10,
+  "name": "Login suscessful de un usuario",
+  "description": "",
+  "id": "test-del-login-en-el-sistema;login-suscessful-de-un-usuario;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 3,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 5,
+  "name": "Un usuario y password para login",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 6,
+  "name": "\"asdf@gmail.com\"  y \"1234\" se quiere loguear",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 7,
+  "name": "se loguea correctamente",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "LoginTest.Un_usuario_y_password_para_login()"
+});
+formatter.result({
+  "duration": 16033000,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "asdf@gmail.com",
+      "offset": 1
+    },
+    {
+      "val": "1234",
+      "offset": 21
+    }
+  ],
+  "location": "LoginTest.y_se_quiere_loguear(String,String)"
+});
+formatter.result({
+  "duration": 135272800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "LoginTest.se_loguea_correctamente()"
+});
+formatter.result({
+  "duration": 35600,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 11,
+  "name": "Login suscessful de un usuario",
+  "description": "",
+  "id": "test-del-login-en-el-sistema;login-suscessful-de-un-usuario;;3",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 3,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 5,
+  "name": "Un usuario y password para login",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 6,
+  "name": "\"fernycozar@hotmail.com\"  y \"supersecreto\" se quiere loguear",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 7,
+  "name": "se loguea correctamente",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "LoginTest.Un_usuario_y_password_para_login()"
+});
+formatter.result({
+  "duration": 276500,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "fernycozar@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "supersecreto",
+      "offset": 29
+    }
+  ],
+  "location": "LoginTest.y_se_quiere_loguear(String,String)"
+});
+formatter.result({
+  "duration": 184785300,
+  "status": "passed"
+});
+formatter.match({
+  "location": "LoginTest.se_loguea_correctamente()"
+});
+formatter.result({
+  "duration": 24600,
   "status": "passed"
 });
 formatter.scenario({
   "line": 21,
-  "name": "Registro incorrecto de un usuario",
+  "name": "Login invalido de un usuario",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;registro-incorrecto-de-un-usuario",
+  "id": "test-del-login-en-el-sistema;login-invalido-de-un-usuario;;2",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 20,
-      "name": "@Scenario4"
+      "line": 14,
+      "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
-  "line": 22,
-  "name": "Un nombre, un email, una pwduno y una pwddos",
+  "line": 16,
+  "name": "Un usuario y password para login",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 23,
-  "name": "pwduno es distinto a pwddos",
+  "line": 17,
+  "name": "\"meloinvento\t\t\"  y \"1asdfasdf4\" se quiere loguear",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 24,
-  "name": "no se registra",
+  "line": 18,
+  "name": "no consigue loguearse",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_nombre_un_email_una_pwduno_y_una_pwddos()"
+  "location": "LoginTest.Un_usuario_y_password_para_login()"
 });
 formatter.result({
-  "duration": 35262,
+  "duration": 38000,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.pwduno_es_distinto_a_pwddos()"
+  "arguments": [
+    {
+      "val": "meloinvento\t\t",
+      "offset": 1
+    },
+    {
+      "val": "1asdfasdf4",
+      "offset": 20
+    }
+  ],
+  "location": "LoginTest.y_se_quiere_loguear(String,String)"
 });
 formatter.result({
-  "duration": 43725,
+  "duration": 159968100,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.no_se_registra()"
+  "location": "LoginTest.no_consigue_loguearse()"
 });
 formatter.result({
-  "duration": 43724,
+  "duration": 33300,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 26,
-  "name": "Registro incorrecto de un usuario",
+  "line": 22,
+  "name": "Login invalido de un usuario",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;registro-incorrecto-de-un-usuario",
+  "id": "test-del-login-en-el-sistema;login-invalido-de-un-usuario;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 25,
-      "name": "@Scenario5"
+      "line": 14,
+      "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
-  "line": 27,
-  "name": "Un nombre, un email, una pwduno y una pwddos",
+  "line": 16,
+  "name": "Un usuario y password para login",
   "keyword": "Given "
+});
+formatter.step({
+  "line": 17,
+  "name": "\"fasdfasdfasdfasdfasdfa\"  y \"asdfasdfasdfasdf\" se quiere loguear",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 18,
+  "name": "no consigue loguearse",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "LoginTest.Un_usuario_y_password_para_login()"
+});
+formatter.result({
+  "duration": 23600,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "fasdfasdfasdfasdfasdfa",
+      "offset": 1
+    },
+    {
+      "val": "asdfasdfasdfasdf",
+      "offset": 29
+    }
+  ],
+  "location": "LoginTest.y_se_quiere_loguear(String,String)"
+});
+formatter.result({
+  "duration": 131505400,
+  "status": "passed"
+});
+formatter.match({
+  "location": "LoginTest.no_consigue_loguearse()"
+});
+formatter.result({
+  "duration": 19800,
+  "status": "passed"
+});
+formatter.uri('com\webapp\redsocial\SolicitudesAceptar.feature');
+formatter.feature({
+  "line": 1,
+  "name": "Aceptar solicitudes de amistad de otro usuario",
+  "description": "",
+  "id": "aceptar-solicitudes-de-amistad-de-otro-usuario",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "line": 12,
+  "name": "Aceptar solicitud valido",
+  "description": "",
+  "id": "aceptar-solicitudes-de-amistad-de-otro-usuario;aceptar-solicitud-valido;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 4,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 6,
+  "name": "Usuario conectado para aceptar",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "\"emisor@hotmail.com\" es aceptado por \"receptor@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Aceptar como amigo",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Usuario_conectado_para_aceptar()"
+});
+formatter.result({
+  "duration": 14577100,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 38
+    }
+  ],
+  "location": "SolicitudesAceptarTest.es_aceptado_por(String,String)"
+});
+formatter.result({
+  "duration": 1564592800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Aceptar_como_amigo()"
+});
+formatter.result({
+  "duration": 2967870400,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 13,
+  "name": "Aceptar solicitud valido",
+  "description": "",
+  "id": "aceptar-solicitudes-de-amistad-de-otro-usuario;aceptar-solicitud-valido;;3",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 4,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 6,
+  "name": "Usuario conectado para aceptar",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "\"emisor2@hotmail.com\" es aceptado por \"receptor2@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Aceptar como amigo",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Usuario_conectado_para_aceptar()"
+});
+formatter.result({
+  "duration": 16700,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 39
+    }
+  ],
+  "location": "SolicitudesAceptarTest.es_aceptado_por(String,String)"
+});
+formatter.result({
+  "duration": 1945660600,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Aceptar_como_amigo()"
+});
+formatter.result({
+  "duration": 2991962100,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 23,
+  "name": "Aceptar solicitud invalido",
+  "description": "",
+  "id": "aceptar-solicitudes-de-amistad-de-otro-usuario;aceptar-solicitud-invalido;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 15,
+      "name": "@Scenario2"
+    }
+  ]
+});
+formatter.step({
+  "line": 17,
+  "name": "Usuario conectado para aceptar",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 18,
+  "name": "\"emisor@hotmail.com\" es aceptado por \"receptor@hotmail.com\" pero da error por no envio de solicitud",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 19,
+  "name": "Mensaje de error a la aceptacion",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Usuario_conectado_para_aceptar()"
+});
+formatter.result({
+  "duration": 16500,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 38
+    }
+  ],
+  "location": "SolicitudesAceptarTest.es_aceptado_por_pero_da_error_por_no_envio_de_solicitud(String,String)"
+});
+formatter.result({
+  "duration": 691560600,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Mensaje_de_error_a_la_aceptacion()"
+});
+formatter.result({
+  "duration": 1820640800,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 24,
+  "name": "Aceptar solicitud invalido",
+  "description": "",
+  "id": "aceptar-solicitudes-de-amistad-de-otro-usuario;aceptar-solicitud-invalido;;3",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 15,
+      "name": "@Scenario2"
+    }
+  ]
+});
+formatter.step({
+  "line": 17,
+  "name": "Usuario conectado para aceptar",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 18,
+  "name": "\"emisor2@hotmail.com\" es aceptado por \"receptor2@hotmail.com\" pero da error por no envio de solicitud",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 19,
+  "name": "Mensaje de error a la aceptacion",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Usuario_conectado_para_aceptar()"
+});
+formatter.result({
+  "duration": 18700,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 39
+    }
+  ],
+  "location": "SolicitudesAceptarTest.es_aceptado_por_pero_da_error_por_no_envio_de_solicitud(String,String)"
+});
+formatter.result({
+  "duration": 658762600,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesAceptarTest.Mensaje_de_error_a_la_aceptacion()"
+});
+formatter.result({
+  "duration": 1843146000,
+  "status": "passed"
+});
+formatter.uri('com\webapp\redsocial\SolicitudesEnvio.feature');
+formatter.feature({
+  "line": 1,
+  "name": "Enviar solicitudes de amistad a otro usuario",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "line": 12,
+  "name": "Envio de solicitud de amistad valido",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;envio-de-solicitud-de-amistad-valido;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 4,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 6,
+  "name": "Usuario conectado para enviar solicitud",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "\"emisor@hotmail.com\" quiere enviar solicitud a \"receptor@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Envio solicitud al segundo",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
+});
+formatter.result({
+  "duration": 12090100,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 48
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a(String,String)"
+});
+formatter.result({
+  "duration": 1059563800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Envio_solicitud_al_segundo()"
+});
+formatter.result({
+  "duration": 3400916300,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 13,
+  "name": "Envio de solicitud de amistad valido",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;envio-de-solicitud-de-amistad-valido;;3",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 4,
+      "name": "@Scenario1"
+    }
+  ]
+});
+formatter.step({
+  "line": 6,
+  "name": "Usuario conectado para enviar solicitud",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "\"emisor2@hotmail.com\" quiere enviar solicitud a \"receptor2@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 8,
+  "name": "Envio solicitud al segundo",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
+});
+formatter.result({
+  "duration": 20100,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 49
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a(String,String)"
+});
+formatter.result({
+  "duration": 1815129300,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Envio_solicitud_al_segundo()"
+});
+formatter.result({
+  "duration": 4661049800,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 23,
+  "name": "Solicitud invalida porque son amigos",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;solicitud-invalida-porque-son-amigos;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 15,
+      "name": "@Scenario2"
+    }
+  ]
+});
+formatter.step({
+  "line": 17,
+  "name": "Usuario conectado para enviar solicitud",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 18,
+  "name": "\"emisor@hotmail.com\" quiere enviar solicitud a \"receptor@hotmail.com\" pero son amigos",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 19,
+  "name": "No envio de solicitud",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
+});
+formatter.result({
+  "duration": 21400,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 48
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a_pero_son_amigos(String,String)"
+});
+formatter.result({
+  "duration": 2566173900,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.No_envio_de_solicitud()"
+});
+formatter.result({
+  "duration": 2973090400,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 24,
+  "name": "Solicitud invalida porque son amigos",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;solicitud-invalida-porque-son-amigos;;3",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 15,
+      "name": "@Scenario2"
+    }
+  ]
+});
+formatter.step({
+  "line": 17,
+  "name": "Usuario conectado para enviar solicitud",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 18,
+  "name": "\"emisor2@hotmail.com\" quiere enviar solicitud a \"receptor2@hotmail.com\" pero son amigos",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 19,
+  "name": "No envio de solicitud",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
+});
+formatter.result({
+  "duration": 19700,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 49
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a_pero_son_amigos(String,String)"
+});
+formatter.result({
+  "duration": 2803763300,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SolicitudesEnvioTest.No_envio_de_solicitud()"
+});
+formatter.result({
+  "duration": 2463137400,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 34,
+  "name": "Solicitud invalida porque tienen solicitudes pendientes",
+  "description": "",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;solicitud-invalida-porque-tienen-solicitudes-pendientes;;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 26,
+      "name": "@Scenario3"
+    }
+  ]
 });
 formatter.step({
   "line": 28,
-  "name": "email ya esta en la base de datos",
-  "keyword": "When "
+  "name": "Usuario conectado para enviar solicitud",
+  "keyword": "Given "
 });
 formatter.step({
   "line": 29,
-  "name": "no se registra",
+  "name": "\"emisor@hotmail.com\" quiere enviar solicitud a \"receptor@hotmail.com\" pero ya tiene solicitudes suyas",
+  "matchedColumns": [
+    0,
+    1
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 30,
+  "name": "Solicitud ya enviada",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_nombre_un_email_una_pwduno_y_una_pwddos()"
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
 });
 formatter.result({
-  "duration": 31031,
+  "duration": 22400,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.email_ya_esta_en_la_base_de_datos()"
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 48
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a_pero_ya_tiene_solicitudes_suyas(String,String)"
 });
 formatter.result({
-  "duration": 306634700,
+  "duration": 1057499700,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.no_se_registra()"
+  "location": "SolicitudesEnvioTest.Solicitud_ya_enviada()"
 });
 formatter.result({
-  "duration": 40198,
+  "duration": 2118939300,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 31,
-  "name": "Borrado de cuenta de usuario",
+  "line": 35,
+  "name": "Solicitud invalida porque tienen solicitudes pendientes",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;borrado-de-cuenta-de-usuario",
+  "id": "enviar-solicitudes-de-amistad-a-otro-usuario;solicitud-invalida-porque-tienen-solicitudes-pendientes;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 30,
-      "name": "@Scenario6"
+      "line": 26,
+      "name": "@Scenario3"
     }
   ]
 });
 formatter.step({
-  "line": 32,
-  "name": "Un idUsuario",
+  "line": 28,
+  "name": "Usuario conectado para enviar solicitud",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 33,
-  "name": "datos correctos",
+  "line": 29,
+  "name": "\"emisor2@hotmail.com\" quiere enviar solicitud a \"receptor2@hotmail.com\" pero ya tiene solicitudes suyas",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 34,
-  "name": "se borra",
+  "line": 30,
+  "name": "Solicitud ya enviada",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_idUsuario()"
+  "location": "SolicitudesEnvioTest.Usuario_conectado_para_enviar_solicitud()"
 });
 formatter.result({
-  "duration": 48308,
+  "duration": 20100,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.datos_correctos()"
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 49
+    }
+  ],
+  "location": "SolicitudesEnvioTest.quiere_enviar_solicitud_a_pero_ya_tiene_solicitudes_suyas(String,String)"
 });
 formatter.result({
-  "duration": 223785217,
+  "duration": 1069620500,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.se_borra()"
+  "location": "SolicitudesEnvioTest.Solicitud_ya_enviada()"
 });
 formatter.result({
-  "duration": 75108,
+  "duration": 1930411400,
   "status": "passed"
+});
+formatter.uri('com\webapp\redsocial\SolicitudesRechazo.feature');
+formatter.feature({
+  "line": 1,
+  "name": "Rechazar solicitudes de amistad de otro usuario",
+  "description": "",
+  "id": "rechazar-solicitudes-de-amistad-de-otro-usuario",
+  "keyword": "Feature"
 });
 formatter.scenario({
-  "line": 36,
-  "name": "Modificacion de cuenta de usuario",
+  "line": 12,
+  "name": "Rechazar solicitud valido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;modificacion-de-cuenta-de-usuario",
+  "id": "rechazar-solicitudes-de-amistad-de-otro-usuario;rechazar-solicitud-valido;;2",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 35,
-      "name": "@Scenario7"
+      "line": 4,
+      "name": "@Scenario1"
     }
   ]
 });
 formatter.step({
-  "line": 37,
-  "name": "Un Usuario",
+  "line": 6,
+  "name": "Usuario conectado para rechazar",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 38,
-  "name": "datos usuario correctos",
+  "line": 7,
+  "name": "\"emisor@hotmail.com\" es rechazado por \"receptor@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 39,
-  "name": "se modifica usuario",
+  "line": 8,
+  "name": "Rechazar peticion de amistad",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_Usuario()"
+  "location": "SolicitudesRechazoTest.Usuario_conectado_para_rechazar()"
 });
 formatter.result({
-  "duration": 161498,
+  "duration": 6000200,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.datos_usuario_correctos()"
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 39
+    }
+  ],
+  "location": "SolicitudesRechazoTest.es_rechazado_por(String,String)"
 });
 formatter.result({
-  "duration": 184519901,
+  "duration": 1647930400,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.se_modifica_usuario()"
+  "location": "SolicitudesRechazoTest.Rechazar_peticion_de_amistad()"
 });
 formatter.result({
-  "duration": 203499865,
+  "duration": 2064385200,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 41,
-  "name": "Hacer una publicacion",
+  "line": 13,
+  "name": "Rechazar solicitud valido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;hacer-una-publicacion",
+  "id": "rechazar-solicitudes-de-amistad-de-otro-usuario;rechazar-solicitud-valido;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 40,
-      "name": "@Scenario8"
+      "line": 4,
+      "name": "@Scenario1"
     }
   ]
 });
 formatter.step({
-  "line": 42,
-  "name": "Usuario en wall",
+  "line": 6,
+  "name": "Usuario conectado para rechazar",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 43,
-  "name": "escribes publicacion",
+  "line": 7,
+  "name": "\"emisor2@hotmail.com\" es rechazado por \"receptor2@hotmail.com\"",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 44,
-  "name": "publicas",
+  "line": 8,
+  "name": "Rechazar peticion de amistad",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Usuario_en_wall()"
+  "location": "SolicitudesRechazoTest.Usuario_conectado_para_rechazar()"
 });
 formatter.result({
-  "duration": 1548342,
+  "duration": 40000,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.escribes_publicacion()"
+  "arguments": [
+    {
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 40
+    }
+  ],
+  "location": "SolicitudesRechazoTest.es_rechazado_por(String,String)"
 });
 formatter.result({
-  "duration": 197895722,
+  "duration": 1753590500,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.publicas()"
+  "location": "SolicitudesRechazoTest.Rechazar_peticion_de_amistad()"
 });
 formatter.result({
-  "duration": 32441,
+  "duration": 2219104800,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 46,
-  "name": "Borrar una publicacion",
+  "line": 23,
+  "name": "Rechazar solicitud invalido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;borrar-una-publicacion",
+  "id": "rechazar-solicitudes-de-amistad-de-otro-usuario;rechazar-solicitud-invalido;;2",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 45,
-      "name": "@Scenario9"
+      "line": 15,
+      "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
-  "line": 47,
-  "name": "Un idpublicacion",
+  "line": 17,
+  "name": "Usuario conectado para rechazar",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 48,
-  "name": "datos publicacion correctos",
+  "line": 18,
+  "name": "\"emisor@hotmail.com\" es rechazado por \"receptor@hotmail.com\" pero no le habia enviado solicitud",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 49,
-  "name": "se borra publicacion",
+  "line": 19,
+  "name": "Mensaje de error al rechazo de la peticion",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Un_idpublicacion()"
+  "location": "SolicitudesRechazoTest.Usuario_conectado_para_rechazar()"
 });
 formatter.result({
-  "duration": 26799,
+  "duration": 22300,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.datos_publicacion_correctos()"
+  "arguments": [
+    {
+      "val": "emisor@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor@hotmail.com",
+      "offset": 39
+    }
+  ],
+  "location": "SolicitudesRechazoTest.es_rechazado_por_pero_no_le_habia_enviado_solicitud(String,String)"
 });
 formatter.result({
-  "duration": 202694135,
+  "duration": 551246000,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.se_borra_publicacion()"
+  "location": "SolicitudesRechazoTest.Mensaje_de_error_al_rechazo_de_la_peticion()"
 });
 formatter.result({
-  "duration": 98380,
+  "duration": 1495023600,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 51,
-  "name": "Modificar una publicacion",
+  "line": 24,
+  "name": "Rechazar solicitud invalido",
   "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;modificar-una-publicacion",
+  "id": "rechazar-solicitudes-de-amistad-de-otro-usuario;rechazar-solicitud-invalido;;3",
   "type": "scenario",
-  "keyword": "Scenario",
+  "keyword": "Scenario Outline",
   "tags": [
     {
-      "line": 50,
-      "name": "@Scenario10"
+      "line": 15,
+      "name": "@Scenario2"
     }
   ]
 });
 formatter.step({
-  "line": 52,
-  "name": "Una publicacion",
+  "line": 17,
+  "name": "Usuario conectado para rechazar",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 53,
-  "name": "publicacion correcta",
+  "line": 18,
+  "name": "\"emisor2@hotmail.com\" es rechazado por \"receptor2@hotmail.com\" pero no le habia enviado solicitud",
+  "matchedColumns": [
+    0,
+    1
+  ],
   "keyword": "When "
 });
 formatter.step({
-  "line": 54,
-  "name": "se modifica publicacion",
+  "line": 19,
+  "name": "Mensaje de error al rechazo de la peticion",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "annotation.Una_publicacion()"
+  "location": "SolicitudesRechazoTest.Usuario_conectado_para_rechazar()"
 });
 formatter.result({
-  "duration": 104374,
+  "duration": 35600,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.publicacion_correcta()"
-});
-formatter.result({
-  "duration": 190729487,
-  "status": "passed"
-});
-formatter.match({
-  "location": "annotation.se_modifica_publicacion()"
-});
-formatter.result({
-  "duration": 201866896,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 56,
-  "name": "Hacer un mensaje privado",
-  "description": "",
-  "id": "uso-de-cucumber-en-el-que-se-va-a-probar-el-funcionamiento;hacer-un-mensaje-privado",
-  "type": "scenario",
-  "keyword": "Scenario",
-  "tags": [
+  "arguments": [
     {
-      "line": 55,
-      "name": "@Scenario11"
+      "val": "emisor2@hotmail.com",
+      "offset": 1
+    },
+    {
+      "val": "receptor2@hotmail.com",
+      "offset": 40
     }
-  ]
-});
-formatter.step({
-  "line": 57,
-  "name": "Un mensaje privado",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 58,
-  "name": "mensaje privado correcto",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 59,
-  "name": "se manda mensaje privado",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "annotation.Un_mensaje_privado()"
+  ],
+  "location": "SolicitudesRechazoTest.es_rechazado_por_pero_no_le_habia_enviado_solicitud(String,String)"
 });
 formatter.result({
-  "duration": 2919317,
+  "duration": 559028200,
   "status": "passed"
 });
 formatter.match({
-  "location": "annotation.mensaje_privado_correcto()"
+  "location": "SolicitudesRechazoTest.Mensaje_de_error_al_rechazo_de_la_peticion()"
 });
 formatter.result({
-  "duration": 197956725,
-  "status": "passed"
-});
-formatter.match({
-  "location": "annotation.se_manda_mensaje_privado()"
-});
-formatter.result({
-  "duration": 35615,
+  "duration": 1411103900,
   "status": "passed"
 });
 });

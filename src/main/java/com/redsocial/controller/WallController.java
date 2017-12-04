@@ -1,24 +1,21 @@
 package com.redsocial.controller;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.Map;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.redsocial.auxiliares.Utilidades;
 import com.redsocial.modelo.Like;
 import com.redsocial.modelo.MensajesPrivados;
 import com.redsocial.modelo.Publicacion;
@@ -29,6 +26,14 @@ import com.redsocial.persistencia.DAOMensajesPrivados;
 import com.redsocial.persistencia.DAOPublicacion;
 import com.redsocial.persistencia.DAORespuesta;
 import com.redsocial.persistencia.DAOUsuario;
+
+/***
+ * 
+ * @method Diferentes muros que se necesitaran en la red social
+ * Para las publicaciones, mensajes, like´s...
+ * Implementacion de las funciones like y mensajes privados (incluye enviar mensajes)
+ * 
+ */
 
 @Controller
 public class WallController {
@@ -42,13 +47,28 @@ public class WallController {
 	public String wall(HttpServletRequest request, Model model) throws Exception {
 		
 		if (request.getSession().getAttribute("user")!=null) {
-			ArrayList<Publicacion> publicaciones = DAOPublicacion.selectAll();
+			ArrayList<Publicacion> publicaciones = DAOPublicacion.selectPublicas();
 			Hashtable<String,Integer> likes = new Hashtable<String,Integer>();
 			Hashtable<String,Integer> checklikes = new Hashtable<String,Integer>();
 			Usuario user = DAOUsuario.select((Usuario) request.getSession().getAttribute("user"));
+			ArrayList<String> amigos=DAOUsuario.obtenerAmigos(user);
+			amigos.add(user.getemail());
+			Iterator<String> it=amigos.iterator();
+			while(it.hasNext()) {
+				publicaciones.addAll(DAOPublicacion.selectPrivadas(it.next()));
+			}
+			Collections.sort(publicaciones, new Comparator<Publicacion>() {
+		        @Override
+		        public int compare(Publicacion publi1, Publicacion publi2)
+		        {
+
+		            return  publi2.getIdPublicacion().compareTo(publi1.getIdPublicacion());
+		        }
+		    });
 			Hashtable<String,ArrayList<Respuesta>> respuestas = new Hashtable<String,ArrayList<Respuesta>>();
 			request.getSession().setAttribute("user", user);
-			for (int i=0;i<publicaciones.size();i++) {
+			int sizePubl = publicaciones.size();
+			for (int i=0;i<sizePubl;i++) {
 				int totalPublicaciones = 0;
 				totalPublicaciones = DAOLike.select(publicaciones.get(i).getIdPublicacion()).size();
 				likes.put(publicaciones.get(i).getIdPublicacion(), totalPublicaciones);
@@ -68,6 +88,7 @@ public class WallController {
 			model.addAttribute("publicaciones",publicaciones);
 			model.addAttribute("respuestas",respuestas);
 			model.addAttribute("totalMensajes", mensajes.size());
+			model.addAttribute("totalNotificaciones", DAOUsuario.obtenerSolicitudes(user).size());
 			model.addAttribute("likes",likes);
 			model.addAttribute("user",user);
 			model.addAttribute("checklikes",checklikes);
@@ -114,7 +135,6 @@ public class WallController {
 	
 	@RequestMapping(value = "messages", method = RequestMethod.GET)
 	public String messages(HttpServletRequest request,Model model) throws Exception {
-		
 		if (request.getSession().getAttribute("user")!=null) {
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			ArrayList<MensajesPrivados> mensajes = DAOMensajesPrivados.selectMsgUser(user.getemail());	
@@ -124,6 +144,7 @@ public class WallController {
 			model.addAttribute("user",user);
 			model.addAttribute("usuarios",usuarios);
 			model.addAttribute("totalMensajes", mensajes.size());
+			model.addAttribute("totalNotificaciones", DAOUsuario.obtenerSolicitudes(user).size());
 			model.addAttribute("body","mensajes");
 			return "wall";
 		}
@@ -132,7 +153,31 @@ public class WallController {
 		}
 		
 	}
-	
+	@RequestMapping(value = "vistaAmigos", method = RequestMethod.GET)
+	public String vistaAmigos(HttpServletRequest request,Model model) throws Exception {
+		if (request.getSession().getAttribute("user")!=null) {
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			model.addAttribute("body","vistaAmigos");
+			model.addAttribute("notificaciones",Utilidades.mostrarNotificaciones(user));
+			model.addAttribute("totalNotificaciones", DAOUsuario.obtenerSolicitudes(user).size());
+			model.addAttribute("totalMensajes", DAOMensajesPrivados.selectMsgUser(((Usuario) request.getSession().getAttribute("user")).getemail()).size());
+			
+			try{
+				String filtro = request.getParameter("txtUsuarioNombre");
+				Usuario usuario;
+				usuario = (Usuario) request.getSession().getAttribute("user");
+				model.addAttribute("amigos", Utilidades.buscadorUsuario(usuario, filtro));
+			}catch (Exception e) {
+				
+			}
+
+			return "wall";
+		}
+		else {
+			return "home";
+		}
+		
+	}
 	@RequestMapping(value = "sendMessage", method = RequestMethod.POST)
 	public String sendMessage(HttpServletRequest request,Model model) throws Exception {
 		
@@ -142,18 +187,7 @@ public class WallController {
 			String emisor = ((Usuario) request.getSession().getAttribute("user")).getemail();
 			String mensaje = request.getParameter("mensaje");
 			
-			 // Montamos la fecha actual para saber cuando se hizo la publicacion.
-			 Calendar fecha = new GregorianCalendar();
-			 String fechaEnvio = "";
-		     int year = fecha.get(Calendar.YEAR);
-		     // Se le suma uno, porque calendar.month devuelve de 0-11
-		     int month = fecha.get(Calendar.MONTH)+1;
-		     int day = fecha.get(Calendar.DAY_OF_MONTH);
-		     int hour = fecha.get(Calendar.HOUR_OF_DAY);
-		     int minute = fecha.get(Calendar.MINUTE);
-		     String monthS = (month<10)?"0"+month:""+month;
-		     String dayS = (day<10)?"0"+day:""+day;
-		     fechaEnvio = dayS+"/"+monthS+"/"+year+" "+hour+":"+minute;
+			String fechaEnvio=Utilidades.obtenerFecha();
 			
 			MensajesPrivados message = new MensajesPrivados(fechaEnvio, destinatario, emisor, mensaje);
 			

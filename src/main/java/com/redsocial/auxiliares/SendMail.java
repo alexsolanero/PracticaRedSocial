@@ -1,58 +1,56 @@
 package com.redsocial.auxiliares;
 
+import java.sql.SQLException;
 import java.util.Properties;
-
-import javax.mail.*;
+import javax.mail.Session;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Message;
+import javax.mail.Transport;
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 /**
- * 
- * @author Usuario
+ * MailSender- Clase para gestionar el envio de email de la cuenta de intravita a usuarios
  *
+ * @author Intravita
+ * @since sprint 2
  */
+
 public class SendMail {
-	private static String userName = "atencion.cliente.dissw@gmail.com";
-	private static String password = "atencioncliente1234";
 
-	public SendMail() {
-		
-	}
-	
-	private static Session getSession(){
-		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.socketFactory.port", "465");
-		props.put("mail.smtp.socketFactory.class",
-				"javax.net.ssl.SSLSocketFactory");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "465");
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(userName, password);
-			}
-		});
-		return session;
-	}
-	public void sendMail(String email, String pwd) throws Exception{
-		try {
+  static DatosUsuario userData = new DatosUsuario();
 
-			Message message = new MimeMessage(getSession());
-			message.setFrom(new InternetAddress(userName));
-			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
-			message.setSubject("Recupera tu contrasena");
-			message.setText("La contrasena para acceder a tu cuenta es:"+pwd);
-			Transport.send(message);
+  private static Session getSession() throws SQLException{
+    Properties props = new Properties();
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.socketFactory.port", "465");
+    props.put("mail.smtp.socketFactory.class",
+        "javax.net.ssl.SSLSocketFactory");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.port", "465");
+    
+    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+      protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(userData.getUserName(), userData.getPassword());
+      }
+    });
+    return session;
+  }
+  
+  public void sendMailRecoverPwd(String usuario, String pwd) throws Exception{
+    try {
+
+      Message message = new MimeMessage(getSession());
+      message.setFrom(new InternetAddress(userData.getUserName()));
+      message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(usuario));
+      message.setSubject("Servicio de atención al cliente de IntraVita - Reestablecer contraseña");
+      message.setText("Saludos, su nueva clave temporal para reestablecer su contraseña es: "+pwd+
+              "\nPor favor, escriba esta clave temporal e introduzca y verifique una nueva contraseña para su cuenta.");
+      Transport.send(message);
 
 
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    } catch (MessagingException e) {
+    }
+  }
 }
-
-
-
-
-
-
