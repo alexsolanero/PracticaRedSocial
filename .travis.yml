@@ -5,7 +5,7 @@ jdk:
 deploy:
  provider: heroku
  api_key:
-  secure: 00b2aadb-407c-47d2-a761-c09a6a8c0008
+  secure: 8a7b0a0a-cd49-4063-bec3-ca0bf8aded59
  app: redsocial1718v2
  on:
   repo: alexsolanero/redSocial
