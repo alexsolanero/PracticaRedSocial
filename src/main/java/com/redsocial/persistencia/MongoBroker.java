@@ -15,14 +15,15 @@ import com.mongodb.client.MongoDatabase;
 public class MongoBroker {
 
 	private static MongoBroker yo;
-	private MongoClientURI uri;
+	
 	private MongoClient mongoClient;
 	private MongoDatabase db;
 	
 	private MongoBroker(){
-		this.uri = new MongoClientURI("mongodb://disoft:disoft2017@ds135790.mlab.com:35790/usuarios");
-		this.mongoClient= new MongoClient(uri);
-        this.db= mongoClient.getDatabase("usuarios");
+		this.mongoClient= new MongoClient(
+				  new MongoClientURI( "mongodb://alba:pro2017@ds135196.mlab.com:35196/intravita" )
+				);
+        this.db= mongoClient.getDatabase("intravita");
 	}
 	
 	public static MongoBroker get(){
